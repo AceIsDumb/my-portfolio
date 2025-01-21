@@ -1,130 +1,203 @@
+<!DOCTYPE html>
 <html>
- <head>
-  <title>
-   Chace.me
-  </title>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
-  <style>
-   body {
+<head>
+    <title>Chace.me</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
             margin: 0;
-            font-family: 'Courier New', Courier, monospace;
-            background-color: #EBD494;
-            color: #333;
+            font-family: Arial, sans-serif;
+            background-color: #f4f5f7;
+            color: #2c3e50;
+            line-height: 1.6;
         }
+
         .header {
-            background-color: #83C9F4;
+            background-color: #34495e;
+            color: #ecf0f1;
             text-align: center;
-            padding: 20px 0;
+            padding: 40px 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 2s;
+            font-family: 'Source Code Pro', monospace;
         }
+
         .header h1 {
             margin: 0;
-            font-size: 3em;
+            font-size: 3.5em;
+            font-weight: bold;
         }
+
         .header p {
-            margin: 0;
-            font-size: 1.2em;
+            margin: 10px 0 0;
+            font-size: 1.25em;
+            font-weight: 300;
         }
-        .about {
-            background-color: #407076;
-            color: #FCFAF9;
-            margin: 20px auto;
-            padding: 20px;
-            width: 80%;
-            border-radius: 15px;
+
+        .about, .achievements {
+            background-color: #ffffff;
+            color: #2c3e50;
+            margin: 30px auto;
+            padding: 30px;
+            width: 70%;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             text-align: center;
+            animation: slideIn 1.5s;
         }
-        .about h2 {
+
+        .about h2, .achievements h2 {
             margin-top: 0;
-            font-size: 2em;
+            font-size: 2.5em;
+            font-weight: 600;
         }
-        .about p {
+
+        .about p, .achievements p {
             font-size: 1.2em;
-            line-height: 1.5;
+            line-height: 1.8;
+            color: #7f8c8d;
         }
+
         .projects {
             text-align: center;
-            margin: 20px 0;
+            margin: 40px 0;
+            animation: fadeInUp 1.5s;
         }
+
         .projects h2 {
-            background-color: #FFB7C3;
+            background-color: #1abc9c;
+            color: #ffffff;
             display: inline-block;
-            padding: 10px 20px;
-            border-radius: 10px;
+            padding: 15px 30px;
+            border-radius: 50px;
             font-size: 2em;
+            font-weight: bold;
         }
+
         .project-list {
             display: flex;
             justify-content: center;
-            gap: 20px;
+            gap: 30px;
             flex-wrap: wrap;
-            margin-top: 20px;
+            margin-top: 30px;
+            padding: 0 20px;
         }
+
         .project-item {
-            background-color: #407076;
+            background-color: #ffffff;
             padding: 20px;
-            border-radius: 15px;
-            width: 150px;
+            border-radius: 10px;
+            width: 200px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
         }
+
+        .project-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+        }
+
         .project-item img {
             width: 100%;
-            border-radius: 10px;
+            border-radius: 8px;
         }
+
         .project-item p {
-            margin-top: 10px;
-            font-size: 1em;
-            color: #EBD494;
+            margin-top: 15px;
+            font-size: 1.1em;
+            font-weight: 500;
+            color: #34495e;
         }
-        @media (max-width: 600px) {
-            .about, .project-item {
+
+        .project-item a {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 8px 15px;
+            background-color: #1abc9c;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .project-item a:hover {
+            background-color: #16a085;
+        }
+
+        @media (max-width: 768px) {
+            .about, .achievements, .project-item {
                 width: 90%;
             }
+
+            .projects h2 {
+                font-size: 1.8em;
+                padding: 10px 20px;
+            }
         }
-  </style>
- </head>
- <body>
-  <div class="header">
-   <h1>
-    Chace Tan
-   </h1>
-   <p>
-    SST Student | web/native dev
-   </p>
-  </div>
-  <div class="about">
-   <h2>
-    ABOUT ME
-   </h2>
-   <p>
-    Hi! I'm Chace, a student at the School of Science and Technology.
-    <br/>
-    I'm currently studying Computing and I'm passionate about web and native development. I mainly program in Python and JavaScript. I'm also interested in machine learning and artificial intelligence.
-   </p>
-  </div>
-  <div class="projects">
-   <h2>
-    PROJECTS
-   </h2>
-   <div class="project-list">
-    <div class="project-item">
-     <img alt="SST Open House app 2024 logo" height:auto src="./resources/Open house.png" width="150"/>
-     <p>
-      SST Open House app 2024
-     </p>
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(-100%); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Chace Tan</h1>
+        <p>SST Student | web/native dev</p>
     </div>
-    <div class="project-item">
-     <img alt="SST virtual tour logo" height="150" src="./resources/Virtual tour.png" width="150"/>
-     <p>
-      SST virtual tour
-     </p>
+    <div class="about">
+        <h2>ABOUT ME</h2>
+        <p>
+            Hi! I'm Chace, a student at the School of Science and Technology.
+            <br/>
+            I'm currently studying Computing and I'm passionate about web and native development. I mainly program in Python and JavaScript. I'm also interested in machine learning and artificial intelligence.
+        </p>
     </div>
-    <div class="project-item">
-     <img alt="Sokudo! logo" height="150" src="./resources/Sokudo.png" width="150"/>
-     <p>
-      Sokudo!
-     </p>
+    <div class="achievements">
+        <h2>ACHIEVEMENTS AND PARTICIPATION</h2>
+        <p>
+            - SST INC. React ACTO 2024
+            <br/>
+            - SST INC. App of the year 2024
+            <br/>
+            - Perse Coding Team Challenge Participation 24/25
+            <br/>
+            - placeholder
+        </p>
     </div>
-   </div>
-  </div>
- </body>
+    <div class="projects">
+        <h2>PROJECTS</h2>
+        <div class="project-list">
+            <div class="project-item">
+                <img alt="SST Open House app 2024 logo" src="./resources/Open house.png"/>
+                <p>SST Open House app 2024</p>
+                <a href="#">Learn More</a>
+            </div>
+            <div class="project-item">
+                <img alt="SST virtual tour logo" src="./resources/Virtual tour.png"/>
+                <p>SST virtual tour</p>
+                <a href="#">Learn More</a>
+            </div>
+            <div class="project-item">
+                <img alt="Sokudo! logo" src="./resources/Sokudo.png"/>
+                <p>Sokudo!</p>
+                <a href="#">Learn More</a>
+            </div>
+        </div>
+    </div>
+</body>
 </html>
+
