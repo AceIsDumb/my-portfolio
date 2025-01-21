@@ -1,0 +1,130 @@
+<html>
+ <head>
+  <title>
+   Chace.me
+  </title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <style>
+   body {
+            margin: 0;
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #EBD494;
+            color: #333;
+        }
+        .header {
+            background-color: #83C9F4;
+            text-align: center;
+            padding: 20px 0;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 3em;
+        }
+        .header p {
+            margin: 0;
+            font-size: 1.2em;
+        }
+        .about {
+            background-color: #407076;
+            color: #FCFAF9;
+            margin: 20px auto;
+            padding: 20px;
+            width: 80%;
+            border-radius: 15px;
+            text-align: center;
+        }
+        .about h2 {
+            margin-top: 0;
+            font-size: 2em;
+        }
+        .about p {
+            font-size: 1.2em;
+            line-height: 1.5;
+        }
+        .projects {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .projects h2 {
+            background-color: #FFB7C3;
+            display: inline-block;
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-size: 2em;
+        }
+        .project-list {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+        .project-item {
+            background-color: #407076;
+            padding: 20px;
+            border-radius: 15px;
+            width: 150px;
+            text-align: center;
+        }
+        .project-item img {
+            width: 100%;
+            border-radius: 10px;
+        }
+        .project-item p {
+            margin-top: 10px;
+            font-size: 1em;
+            color: #EBD494;
+        }
+        @media (max-width: 600px) {
+            .about, .project-item {
+                width: 90%;
+            }
+        }
+  </style>
+ </head>
+ <body>
+  <div class="header">
+   <h1>
+    Chace Tan
+   </h1>
+   <p>
+    SST Student | web/native dev
+   </p>
+  </div>
+  <div class="about">
+   <h2>
+    ABOUT ME
+   </h2>
+   <p>
+    Hi! I'm Chace, a student at the School of Science and Technology.
+    <br/>
+    I'm currently studying Computing and I'm passionate about web and native development. I mainly program in Python and JavaScript. I'm also interested in machine learning and artificial intelligence.
+   </p>
+  </div>
+  <div class="projects">
+   <h2>
+    PROJECTS
+   </h2>
+   <div class="project-list">
+    <div class="project-item">
+     <img alt="SST Open House app 2024 logo" height:auto src="./resources/Open house.png" width="150"/>
+     <p>
+      SST Open House app 2024
+     </p>
+    </div>
+    <div class="project-item">
+     <img alt="SST virtual tour logo" height="150" src="./resources/Virtual tour.png" width="150"/>
+     <p>
+      SST virtual tour
+     </p>
+    </div>
+    <div class="project-item">
+     <img alt="Sokudo! logo" height="150" src="./resources/Sokudo.png" width="150"/>
+     <p>
+      Sokudo!
+     </p>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>
