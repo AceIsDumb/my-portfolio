@@ -7,7 +7,7 @@
     <style>
         body {
             margin: 0;
-            font-family: Arial, sans-serif;
+            font-family: 'Source Code Pro', monospace;
             background-color: #f4f5f7;
             color: #2c3e50;
             line-height: 1.6;
@@ -20,7 +20,6 @@
             padding: 40px 0;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             animation: fadeIn 2s;
-            font-family: 'Source Code Pro', monospace;
         }
 
         .header h1 {
@@ -35,7 +34,7 @@
             font-weight: 300;
         }
 
-        .about, .achievements {
+        .about, .achievements, .participation {
             background-color: #ffffff;
             color: #2c3e50;
             margin: 30px auto;
@@ -47,21 +46,40 @@
             animation: slideIn 1.5s;
         }
 
-        .about h2, .achievements h2 {
+        .about h2, .achievements h2, .participation h2 {
             margin-top: 0;
             font-size: 2.5em;
             font-weight: 600;
         }
 
-        .about p, .achievements p {
+        .tabs {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .tab {
+            padding: 10px 20px;
+            background-color: #1abc9c;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
             font-size: 1.2em;
-            line-height: 1.8;
-            color: #7f8c8d;
+            font-weight: bold;
+        }
+
+        .tab:hover {
+            background-color: #16a085;
+        }
+
+        .achievements, .participation {
+            display: none;
         }
 
         .projects {
             text-align: center;
-            margin: 40px 0;
+            margin: 40px auto;
+            width: 70%;
             animation: fadeInUp 1.5s;
         }
 
@@ -69,8 +87,8 @@
             background-color: #1abc9c;
             color: #ffffff;
             display: inline-block;
-            padding: 15px 30px;
-            border-radius: 50px;
+            padding: 15px 40px;
+            border-radius: 15px;
             font-size: 2em;
             font-weight: bold;
         }
@@ -81,7 +99,6 @@
             gap: 30px;
             flex-wrap: wrap;
             margin-top: 30px;
-            padding: 0 20px;
         }
 
         .project-item {
@@ -125,33 +142,14 @@
         .project-item a:hover {
             background-color: #16a085;
         }
-
-        @media (max-width: 768px) {
-            .about, .achievements, .project-item {
-                width: 90%;
-            }
-
-            .projects h2 {
-                font-size: 1.8em;
-                padding: 10px 20px;
-            }
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes slideIn {
-            from { opacity: 0; transform: translateX(-100%); }
-            to { opacity: 1; transform: translateX(0); }
-        }
     </style>
+    <script>
+        function showTab(tab) {
+            document.querySelector('.achievements').style.display = 'none';
+            document.querySelector('.participation').style.display = 'none';
+            document.querySelector('.' + tab).style.display = 'block';
+        }
+    </script>
 </head>
 <body>
     <div class="header">
@@ -166,13 +164,21 @@
             I'm currently studying Computing and I'm passionate about web and native development. I mainly program in Python and JavaScript. I'm also interested in machine learning and artificial intelligence.
         </p>
     </div>
+    <div class="tabs">
+        <div class="tab" onclick="showTab('achievements')">Achievements</div>
+        <div class="tab" onclick="showTab('participation')">Participation</div>
+    </div>
     <div class="achievements">
-        <h2>ACHIEVEMENTS AND PARTICIPATION</h2>
+        <h2>ACHIEVEMENTS</h2>
         <p>
             - SST INC. React ACTO 2024
             <br/>
             - SST INC. App of the year 2024
-            <br/>
+        </p>
+    </div>
+    <div class="participation">
+        <h2>PARTICIPATION</h2>
+        <p>
             - Perse Coding Team Challenge Participation 24/25
             <br/>
             - placeholder
@@ -183,12 +189,12 @@
         <div class="project-list">
             <div class="project-item">
                 <img alt="SST Open House app 2024 logo" src="./resources/Open house.png"/>
-                <p>SST Open House app 2024</p>
+                <p>SST Open House App 2024/2025</p>
                 <a href="#">Learn More</a>
             </div>
             <div class="project-item">
                 <img alt="SST virtual tour logo" src="./resources/Virtual tour.png"/>
-                <p>SST virtual tour</p>
+                <p>SST Virtual Tour</p>
                 <a href="#">Learn More</a>
             </div>
             <div class="project-item">
@@ -200,4 +206,6 @@
     </div>
 </body>
 </html>
+
+
 
