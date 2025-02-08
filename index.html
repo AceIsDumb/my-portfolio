@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Chace.me</title>
+    <title>Portfolio</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;600&display=swap" rel="stylesheet">
     <style>
@@ -11,6 +11,12 @@
             background-color: #f4f5f7;
             color: #2c3e50;
             line-height: 1.6;
+            animation: fadeIn 2s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
 
         .header {
@@ -34,7 +40,7 @@
             font-weight: 300;
         }
 
-        .about, .achievements, .participation {
+        .about, .participation {
             background-color: #ffffff;
             color: #2c3e50;
             margin: 30px auto;
@@ -43,10 +49,10 @@
             border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             text-align: center;
-            animation: slideIn 1.5s;
+            animation: fadeIn 2s;
         }
 
-        .about h2, .achievements h2, .participation h2 {
+        .about h2, .participation h2 {
             margin-top: 0;
             font-size: 2.5em;
             font-weight: 600;
@@ -72,7 +78,7 @@
             background-color: #16a085;
         }
 
-        .achievements, .participation {
+        .participation {
             display: none;
         }
 
@@ -80,7 +86,7 @@
             text-align: center;
             margin: 40px auto;
             width: 70%;
-            animation: fadeInUp 1.5s;
+            animation: fadeIn 2s;
         }
 
         .projects h2 {
@@ -109,6 +115,7 @@
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             text-align: center;
             transition: transform 0.3s, box-shadow 0.3s;
+            animation: fadeIn 2s;
         }
 
         .project-item:hover {
@@ -145,7 +152,6 @@
     </style>
     <script>
         function showTab(tab) {
-            document.querySelector('.achievements').style.display = 'none';
             document.querySelector('.participation').style.display = 'none';
             document.querySelector('.' + tab).style.display = 'block';
         }
@@ -161,27 +167,28 @@
         <p>
             Hi! I'm Chace, a student at the School of Science and Technology.
             <br/>
-            I'm currently studying Computing and I'm passionate about web and native development. I mainly program in Python and JavaScript. I'm also interested in machine learning and artificial intelligence.
+            I'm currently studying Computing and I'm passionate about web and native development. I mainly program in HTML and JavaScript. I'm also interested in machine learning and artificial intelligence.
         </p>
     </div>
     <div class="tabs">
-        <div class="tab" onclick="showTab('achievements')">Achievements</div>
         <div class="tab" onclick="showTab('participation')">Participation</div>
-    </div>
-    <div class="achievements">
-        <h2>ACHIEVEMENTS</h2>
-        <p>
-            - SST INC. React ACTO 2024
-            <br/>
-            - SST INC. App of the year 2024
-        </p>
     </div>
     <div class="participation">
         <h2>PARTICIPATION</h2>
         <p>
-            - Perse Coding Team Challenge Participation 24/25
+            - SST Inc. 2022-present
             <br/>
-            - placeholder
+            - Spark AR Bootcamp 2022
+            <br/>
+            - SenseTime AI Bootcamp 2022
+            <br/>
+            - Scouts Leadership Camp 2023
+            <br/>
+            - Singapore Amazing Flying Machine Competition 2023
+            <br/>
+            - Drone Odyssey Challenge 2023
+            <br/>
+            - lorem ipsum
         </p>
     </div>
     <div class="projects">
@@ -190,12 +197,12 @@
             <div class="project-item">
                 <img alt="SST Open House app 2024 logo" src="./resources/Open house.png"/>
                 <p>SST Open House App 2024/2025</p>
-                <a href="#">Learn More</a>
+                <a href="https://github.com/sst-inc/openhouseapp2024">Learn More</a>
             </div>
             <div class="project-item">
                 <img alt="SST virtual tour logo" src="./resources/Virtual tour.png"/>
                 <p>SST Virtual Tour</p>
-                <a href="#">Learn More</a>
+                <a href="https://github.com/tedydevmac/virtualtour">Learn More</a>
             </div>
             <div class="project-item">
                 <img alt="Sokudo! logo" src="./resources/Sokudo.png"/>
@@ -206,6 +213,3 @@
     </div>
 </body>
 </html>
-
-
-
