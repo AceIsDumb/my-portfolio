@@ -11,12 +11,12 @@
             background-color: #f4f5f7;
             color: #2c3e50;
             line-height: 1.6;
-            animation: fadeIn 2s;
+            animation: slideIn 1s ease-out;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+        @keyframes slideIn {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
         }
 
         .header {
@@ -25,7 +25,26 @@
             text-align: center;
             padding: 40px 0;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            animation: fadeIn 2s;
+            animation: slideIn 1s ease-out;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .header img {
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+        }
+
+        .header-text {
+            text-align: left;
         }
 
         .header h1 {
@@ -35,9 +54,10 @@
         }
 
         .header p {
-            margin: 10px 0 0;
+            margin-top: 10px;
             font-size: 1.25em;
             font-weight: 300;
+            text-align: center;
         }
 
         .about, .participation {
@@ -49,7 +69,7 @@
             border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             text-align: center;
-            animation: fadeIn 2s;
+            animation: slideIn 1s ease-out;
         }
 
         .about h2, .participation h2 {
@@ -58,35 +78,11 @@
             font-weight: 600;
         }
 
-        .tabs {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-        }
-
-        .tab {
-            padding: 10px 20px;
-            background-color: #1abc9c;
-            color: white;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 1.2em;
-            font-weight: bold;
-        }
-
-        .tab:hover {
-            background-color: #16a085;
-        }
-
-        .participation {
-            display: none;
-        }
-
         .projects {
             text-align: center;
             margin: 40px auto;
             width: 70%;
-            animation: fadeIn 2s;
+            animation: slideIn 1s ease-out;
         }
 
         .projects h2 {
@@ -115,7 +111,7 @@
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             text-align: center;
             transition: transform 0.3s, box-shadow 0.3s;
-            animation: fadeIn 2s;
+            animation: slideIn 1s ease-out;
         }
 
         .project-item:hover {
@@ -149,19 +145,41 @@
         .project-item a:hover {
             background-color: #16a085;
         }
-    </style>
-    <script>
-        function showTab(tab) {
-            document.querySelector('.participation').style.display = 'none';
-            document.querySelector('.' + tab).style.display = 'block';
+
+        .header-buttons {
+            display: flex;
+            gap: 20px;
+            margin-top: 20px;
         }
-    </script>
+
+        .header-buttons a {
+            display: inline-block;
+        }
+
+        .header-buttons img {
+            width: 50px;
+            height: 50px;
+        }
+
+    </style>
 </head>
 <body>
     <div class="header">
-        <h1>Chace Tan</h1>
+        <div class="header-content">
+            <img src="./resources/profile.png" alt="Profile Image">
+            <div class="header-text">
+                <h1>Chace Tan</h1>
+            </div>
+        </div>
         <p>SST Student | web/native dev</p>
+
+        <div class="header-buttons">
+            <a href="https://github.com/AceIsDumb" target="_blank">  <img src="./resources/github-logo.png" alt="GitHub Logo">  </a>
+            <a href="https://www.linkedin.com/in/chace-tan-ba72162ba/" target="_blank"> <img src="./resources/linkedin-logo.png" alt="LinkedIn Logo"> </a>
+        </div>
+
     </div>
+
     <div class="about">
         <h2>ABOUT ME</h2>
         <p>
@@ -170,9 +188,7 @@
             I'm currently studying Computing and I'm passionate about web and native development. I mainly program in HTML and JavaScript. I'm also interested in machine learning and artificial intelligence.
         </p>
     </div>
-    <div class="tabs">
-        <div class="tab" onclick="showTab('participation')">Participation</div>
-    </div>
+
     <div class="participation">
         <h2>PARTICIPATION</h2>
         <p>
@@ -191,6 +207,7 @@
             - lorem ipsum
         </p>
     </div>
+
     <div class="projects">
         <h2>PROJECTS</h2>
         <div class="project-list">
@@ -211,5 +228,6 @@
             </div>
         </div>
     </div>
+
 </body>
 </html>
