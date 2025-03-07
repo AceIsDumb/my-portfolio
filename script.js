@@ -12,8 +12,7 @@ const pages = {
                 
             </p>
     </div>
-    `,
-    participations: `
+
         <div class="participation">
         <h2>PARTICIPATION</h2>
         <p>
@@ -24,6 +23,14 @@ const pages = {
             - Spark AR Bootcamp 2022
             <br/>
             - SenseTime AI Bootcamp 2022
+            <br/>
+            2023
+            <br/>
+            - Scouts Leadership Camp 2023
+            <br/>
+            - Singapore Amazing Flying Machine Competition 2023 Participation
+            <br/>
+            - Drone Odyssey Challenge 2023 Participation
             <br/>
             2024
             <br/>
