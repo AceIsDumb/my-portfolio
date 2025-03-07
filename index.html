@@ -1,36 +1,627 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Chace Tan - Portfolio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chace Tan | Developer & Student</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Space+Grotesk:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0f172a;
+            --text: #e2e8f0;
+            --primary: #3b82f6;
+            --secondary: #10b981;
+            --accent: #f472b6;
+            --card-bg: #1e293b;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            width: 100%;
+        }
+
+        header {
+            padding: 1.5rem 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background-color: rgba(15, 23, 42, 0.9);
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero-wrapper {
+                flex-direction: column;
+                text-align: center;
+                gap: 2rem;
+            }
+
+            .hero-content {
+                order: 2;
+            }
+
+            .hero-image {
+                order: 1;
+                width: 250px;
+                height: 250px;
+                margin: 0 auto;
+            }
+
+            nav ul {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background-color: var(--bg);
+                padding: 1rem;
+                text-align: center;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            }
+
+            .hamburger {
+                display: block;
+                cursor: pointer;
+            }
+
+            .nav-container.active nav ul {
+                display: flex;
+            }
+
+            nav ul li {
+                margin: 0.5rem 0;
+            }
+        }
+
+        @media (min-width: 769px) {
+            .hamburger {
+                display: none;
+            }
+        }
+
+        .hamburger div {
+            width: 25px;
+            height: 3px;
+            background-color: var(--text);
+            margin: 5px 0;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container.active .hamburger div:nth-child(1) {
+            transform: rotate(-45deg) translate(-5px, 6px);
+        }
+
+        .nav-container.active .hamburger div:nth-child(2) {
+            opacity: 0;
+        }
+
+        .nav-container.active .hamburger div:nth-child(3) {
+            transform: rotate(45deg) translate(-5px, -6px);
+        }
+
+        nav a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+            font-size: 1rem;
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--primary);
+        }
+
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            min-height: 100vh;
+            padding: 8rem 0 4rem;
+            gap: 2rem;
+        }
+
+        .hero-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+        }
+
+        .hero-content {
+            max-width: 600px;
+        }
+
+        h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .highlight {
+            color: var(--primary);
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.8;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: var(--primary);
+            color: var(--bg);
+            padding: 0.75rem 1.5rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background-color: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        .hero-image {
+            width: 350px;
+            height: 350px;
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .hero-image img {
+            width: 90%;
+            height: 90%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        .section {
+            padding: 5rem 0;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 4px;
+            background-color: var(--accent);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 200px;
+            object-fit: contain;
+        }
+
+        .project-content {
+            padding: 1.5rem;
+        }
+
+        .project-title {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+
+        .project-description {
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            opacity: 0.8;
+        }
+
+        .project-link {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .project-link:hover {
+            color: var(--primary);
+        }
+
+        .participation-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .participation-item {
+            background-color: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .participation-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .participation-year {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .participation-event {
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem 0;
+            opacity: 0.7;
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .fade-in.appear {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .hamburger div {
+            width: 25px;
+            height: 3px;
+            background-color: var(--text);
+            margin: 4px 0;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container.active nav {
+            display: flex;
+        }
+
+        @media (max-width: 1024px) {
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                padding-top: 8rem;
+            }
+
+            .hero-content {
+                margin-bottom: 3rem;
+            }
+
+            .hero-image {
+                margin-top: 2rem;
+            }
+
+            h1 {
+                font-size: 3rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 1rem;
+            }
+
+            header {
+                padding: 1rem 0;
+            }
+
+            .nav-container {
+                flex-direction: row;
+                justify-content: space-between;
+            }
+
+            nav {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .hero {
+                padding-top: 10rem;
+            }
+
+            .hero-image {
+                width: 250px;
+                height: 250px;
+            }
+
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .section {
+                padding: 3rem 0;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .projects-grid, .participation-list {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-image {
+                width: 200px;
+                height: 200px;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .cta-button {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
 </head>
 <body>
-    <div class="header">
-        <div class="header-content">
-            <img src="./resources/profile.png" alt="Profile Image">
-            <div class="header-text">
-                <h1>Chace Tan</h1>
+    <header>
+        <div class="container nav-container">
+            <div class="logo">CT</div>
+            <div class="hamburger">
+                <div></div>
+                <div></div>
+                <div></div>
             </div>
+            <nav>
+                <ul>
+                    <li><a href="#home" class="active">Home</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#participation">Participation</a></li>
+                </ul>
+            </nav>
         </div>
-        <nav>
-            <ul>
-                <li><a href="#" onclick="loadPage('aboutme')">About Me</a></li>
-                <li><a href="#" onclick="loadPage('projects')">Projects</a></li>
-            </ul>
-        </nav>
-        <div class="header-buttons">
-            <a href="https://github.com/AceIsDumb" target="_blank">  <img src="./resources/github-logo.png" alt="GitHub Logo">  </a>
-            <a href="https://www.linkedin.com/in/chace-tan-ba72162ba/" target="_blank"> <img src="./resources/linkedin-logo.png" alt="LinkedIn Logo"> </a>
+    </header>
+
+    <main>
+        <section id="home" class="hero">
+            <div class="container">
+                <div class="hero-wrapper">
+                    <div class="hero-content">
+                        <h1 class="fade-in">Chace Tan<br><span class="highlight">Developer & Student</span></h1>
+                        <p class="fade-in">Frontend web and native developer passionate about creating innovative solutions and pushing the boundaries of technology.</p>
+                        <a href="#projects" class="cta-button fade-in">View My Work</a>
+                    </div>
+                    <div class="hero-image fade-in">
+                        <img src="./resources/profile.png" alt="Chace Tan">
+                    </div>
+                </div>
+                </div>
+        </section>
+
+        <section id="projects" class="section">
+            <div class="container">
+                <h2 class="section-title fade-in">Featured Projects</h2>
+                <div class="projects-grid">
+                    <div class="project-card fade-in">
+                        <img src="./resources/Open house.png" alt="SST Open House App" class="project-image">
+                        <div class="project-content">
+                            <h3 class="project-title">SST Open House App 2024/2025</h3>
+                            <p class="project-description">App for guests during SST's 2024 Open House</p>
+                            <a href="https://github.com/sst-inc/openhouseapp2024" class="project-link" target="_blank">View Project</a>
+                        </div>
+                    </div>
+                    <div class="project-card fade-in">
+                        <img src="./resources/Virtual tour.png" alt="SST Virtual Tour" class="project-image">
+                        <div class="project-content">
+                            <h3 class="project-title">SST Virtual Tour</h3>
+                            <p class="project-description">A web-based virtual tour of SST</p>
+                            <a href="https://github.com/tedydevmac/virtualtour" class="project-link" target="_blank">View Project</a>
+                        </div>
+                    </div>
+                    <div class="project-card fade-in">
+                        <img src="./resources/Sokudo.png" alt="Sokudo!" class="project-image">
+                        <div class="project-content">
+                            <h3 class="project-title">Sokudo!</h3>
+                            <p class="project-description">A mental health chatbot built on Gemini 2.0</p>
+                            <a href="https://github.com/AceIsDumb/sokudo" class="project-link" target="_blank">View Project</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="participation" class="section">
+            <div class="container">
+                <h2 class="section-title fade-in">Participation & Achievements</h2>
+                <div class="participation-list">
+                    <div class="participation-item fade-in">
+                        <div class="participation-year">2025</div>
+                        <div class="participation-event">Perse Coding Team Challenge 2025 Distinction</div>
+                    </div>
+                    <div class="participation-item fade-in">
+                        <div class="participation-year">2024</div>
+                        <div class="participation-event">Perse Coding Team Challenge 2024 Participation</div>
+                        <div class="participation-event">Hackomania 2024 Participation</div>
+                        <div class="participation-event">Building with Flutter workshop</div>
+                        <div class="participation-event">BlahajCTF 2024 Participation</div>
+                        <div class="participation-event">AWS Deepracer workshop @ Republic Polytechnic</div>
+                    </div>
+                    <div class="participation-item fade-in">
+                        <div class="participation-year">2023</div>
+                        <div class="participation-event">Scouts Leadership Camp</div>
+                        <div class="participation-event">Singapore Amazing Flying Machine Competition Participation</div>
+                        <div class="participation-event">Drone Odyssey Challenge Participation</div>
+                    </div>
+                    <div class="participation-item fade-in">
+                        <div class="participation-year">2022</div>
+                        <div class="participation-event">SST Inc. 2022-present</div>
+                        <div class="participation-event">Spark AR Bootcamp</div>
+                        <div class="participation-event">SenseTime AI Bootcamp</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Chace Tan. All rights reserved.</p>
         </div>
+    </footer>
 
-    </div>
+    <script>
+        const faders = document.querySelectorAll('.fade-in');
+        const appearOptions = {
+            threshold: 0.3,
+            rootMargin: "0px 0px -100px 0px"
+        };
 
+        const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) {
+                    return;
+                } else {
+                    entry.target.classList.add('appear');
+                    appearOnScroll.unobserve(entry.target);
+                }
+            });
+        }, appearOptions);
 
-    <div id="content">
+        faders.forEach(fader => {
+            appearOnScroll.observe(fader);
+        });
 
-    </div>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
 
-    <script src="script.js"></script>
+        // Active nav link
+        const sections = document.querySelectorAll("section");
+        const navLi = document.querySelectorAll("nav ul li a");
+
+        window.addEventListener("scroll", () => {
+            let current = "";
+            sections.forEach((section) => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= sectionTop - sectionHeight / 3) {
+                    current = section.getAttribute("id");
+                }
+            });
+
+            navLi.forEach((li) => {
+                li.classList.remove("active");
+                if (li.getAttribute("href").slice(1) === current) {
+                    li.classList.add("active");
+                }
+            });
+        });
+
+        // Hamburger menu toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navContainer = document.querySelector('.nav-container');
+
+        hamburger.addEventListener('click', () => {
+            navContainer.classList.toggle('active');
+        });
+    </script>
 </body>
 </html>
