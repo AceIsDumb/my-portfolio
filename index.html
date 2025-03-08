@@ -589,7 +589,6 @@
             appearOnScroll.observe(fader);
         });
 
-        // Smooth scrolling for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -599,7 +598,6 @@
             });
         });
 
-        // Active nav link
         const sections = document.querySelectorAll("section");
         const navLi = document.querySelectorAll("nav ul li a");
 
@@ -621,7 +619,6 @@
             });
         });
 
-        // Hamburger menu toggle
         const hamburger = document.querySelector('.hamburger');
         const navContainer = document.querySelector('.nav-container');
 
