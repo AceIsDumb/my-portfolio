@@ -472,6 +472,26 @@
             color: var(--primary);
             transform: scale(1.01);
         }
+        .header-buttons {
+            display: flex;
+            justify-content: center; /* Centers buttons horizontally */
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .header-buttons a {
+            display: inline-block;
+        }
+
+        .header-buttons img {
+            width: 50px;
+            height: 50px;
+            transition: transform 0.3s ease;
+        }
+
+        .header-buttons img:hover {
+            transform: scale(1.1);
+        }
     </style>
 
 </head>
@@ -574,6 +594,19 @@
                         <div class="participation-event">Spark AR Bootcamp</div>
                         <div class="participation-event">SenseTime AI Bootcamp</div>
                     </div>
+                </div>
+            </div>
+        </section>
+        <section id="socials" class="section">
+            <div class="container">
+                <h2 class="section-title fade-in">Find me on</h2>
+                <div class="header-buttons fade-in">
+                    <a href="https://github.com/AceIsDumb" target="_blank">
+                        <img src="./resources/github-logo.png" alt="GitHub Logo">
+                    </a>
+                    <a href="https://www.linkedin.com/in/chace-tan-ba72162ba/" target="_blank">
+                        <img src="./resources/linkedin-logo.png" alt="LinkedIn Logo">
+                    </a>
                 </div>
             </div>
         </section>
