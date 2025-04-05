@@ -7,6 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Space+Grotesk:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">
     <style>
         :root {
             --bg: #0f172a;
@@ -492,6 +493,61 @@
         .header-buttons img:hover {
             transform: scale(1.1);
         }
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 1.5rem;
+            padding-top: 2rem;
+        }
+
+            .skill-item {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            padding: 1.5rem 1rem;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+            .skill-item:hover {
+            transform: translateY(-5px);
+        }
+
+            .skill-inner {
+            position: relative;
+            z-index: 2;
+        }
+
+            .skill-item i {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+            .skill-item span {
+            display: block;
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+            .skill-item::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 123, 255, 0.08);
+            z-index: 1;
+            transition: all 0.4s ease;
+        }
+
+            .skill-item:hover::before {
+            left: 0;
+        }
+
     </style>
 
 </head>
@@ -509,6 +565,7 @@
                     <li><a href="#home" class="active">Home</a></li>
                     <li><a href="#projects">Projects</a></li>
                     <li><a href="#participation">Participation</a></li>
+                    <li<li><a href="#skills">Skills</a></li>
                 </ul>
             </nav>
         </div>
@@ -598,6 +655,112 @@
                 </div>
             </div>
         </section>
+        <section id="skills" class="section">
+            <div class="container">
+              <h2 class="section-title fade-in">Skills</h2>
+              <div class="skills-grid fade-in">
+          
+                <div class="skill-item">
+                  <div class="skill-inner">
+                    <i class="devicon-html5-plain colored"></i>
+                    <span>HTML</span>
+                  </div>
+                </div>
+                <div class="skill-item">
+                  <div class="skill-inner">
+                    <i class="devicon-css3-plain colored"></i>
+                    <span>CSS</span>
+                  </div>
+                </div>
+                <div class="skill-item">
+                  <div class="skill-inner">
+                    <i class="devicon-javascript-plain colored"></i>
+                    <span>JavaScript</span>
+                  </div>
+                </div>
+                <div class="skill-item">
+                  <div class="skill-inner">
+                    <i class="devicon-python-plain colored"></i>
+                    <span>Python</span>
+                  </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-inner">
+                    <i class="devicon-swift-plain colored"></i>
+                    <span>Swift</span>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-inner">
+                    <i class="devicon-java-plain colored"></i>
+                    <span>Java</span>
+                    </div>
+                </div>
+                <div class="skill-item">
+                  <div class="skill-inner">
+                    <i class="devicon-flutter-plain colored"></i>
+                    <span>Flutter</span>
+                  </div>
+                </div>
+                <div class="skill-item">
+                  <div class="skill-inner">
+                    <i class="devicon-django-plain colored"></i>
+                    <span>Django</span>
+                  </div>
+                </div>
+                <div class="skill-item">
+                  <div class="skill-inner">
+                    <i class="devicon-react-original colored"></i>
+                    <span>React</span>
+                  </div>
+                </div>
+                <div class="skill-item">
+                  <div class="skill-inner">
+                    <i class="devicon-react-original colored"></i>
+                    <span>React Native</span>
+                  </div>
+                </div>
+                <div class="skill-item">
+                  <div class="skill-inner">
+                    <i class="devicon-nodejs-plain colored"></i>
+                    <span>Node.js</span>
+                  </div>
+                </div>
+                <div class="skill-item">
+                  <div class="skill-inner">
+                    <i class="devicon-nextjs-plain"></i>
+                    <span>Next.js</span>
+                  </div>
+                </div>
+                <div class="skill-item">
+                  <div class="skill-inner">
+                    <i class="devicon-flask-original colored"></i>
+                    <span>Flask</span>
+                  </div>
+                </div>
+                <div class="skill-item">
+                  <div class="skill-inner">
+                    <i class="devicon-tailwindcss-plain colored"></i>
+                    <span>TailwindCSS</span>
+                  </div>
+                </div>
+                <div class="skill-item">
+                  <div class="skill-inner">
+                    <i class="devicon-firebase-plain colored"></i>
+                    <span>Firebase</span>
+                  </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-inner">
+                    <i class="devicon-figma-plain colored"></i>
+                    <span>Figma</span>
+                    </div>
+                </div>
+  
+              </div>
+            </div>
+          </section>
+          
         <section id="socials" class="section">
             <div class="container">
                 <h2 class="section-title fade-in">Find me on</h2>
