@@ -355,7 +355,9 @@
             display: none;
             flex-direction: column;
             cursor: pointer;
-            align-self: flex-end;
+            position: absolute;
+            right: 0;
+            z-index: 1001;
         }
 
         .hamburger div {
@@ -370,6 +372,12 @@
             display: flex;
         }
 
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative; /* Add this */
+        }
         @media (max-width: 1024px) {
             .hero {
                 flex-direction: column;
