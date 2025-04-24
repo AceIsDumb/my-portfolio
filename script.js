@@ -3,7 +3,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const lightModeIcon = document.getElementById('light-mode-icon');
     const darkModeIcon = document.getElementById('dark-mode-icon');
     
-
     let isDarkMode = localStorage.getItem('theme') !== 'light';
     
     function applyTheme() {
@@ -26,7 +25,29 @@ document.addEventListener('DOMContentLoaded', function() {
         applyTheme();
     });
     
-    // Existing fade animation code
+    const navLinks = document.querySelectorAll('nav a');
+    
+    navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            const targetId = this.getAttribute('href');
+            const targetSection = document.querySelector(targetId);
+            
+            targetSection.scrollIntoView({ 
+                behavior: 'smooth' 
+            });
+            
+            navLinks.forEach(navLink => navLink.classList.remove('active'));
+            this.classList.add('active');
+            
+            const navContainer = document.querySelector('.nav-container');
+            if (navContainer.classList.contains('active')) {
+                navContainer.classList.remove('active');
+            }
+        });
+    });
+    
     const fadeElements = document.querySelectorAll('.fade-in');
     
     const observer = new IntersectionObserver((entries) => {
@@ -39,5 +60,24 @@ document.addEventListener('DOMContentLoaded', function() {
     
     fadeElements.forEach(element => {
         observer.observe(element);
+    });
+    
+    window.addEventListener('scroll', function() {
+        let scrollPosition = window.scrollY;
+        
+        document.querySelectorAll('section').forEach(section => {
+            const sectionTop = section.offsetTop - 100;
+            const sectionHeight = section.offsetHeight;
+            const sectionId = section.getAttribute('id');
+            
+            if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                navLinks.forEach(link => link.classList.remove('active'));
+                
+                const activeLink = document.querySelector(`nav a[href="#${sectionId}"]`);
+                if (activeLink) {
+                    activeLink.classList.add('active');
+                }
+            }
+        });
     });
 });
