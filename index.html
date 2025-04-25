@@ -11,28 +11,30 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
-        <div class="container nav-container">
-            <div class="logo">CT</div>
+  <header>
+    <div class="container nav-container">
+        <div class="logo">CT</div>
+        <nav>
+            <ul>
+                <li><a href="#home" class="active">Home</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#participation">Participation</a></li>
+                <li><a href="#skills">Skills</a></li>
+            </ul>
+        </nav>
+        <div class="nav-right">
+            <div class="theme-toggle">
+                <img src="./resources/sun.svg" alt="Light Mode" class="toggle-icon" id="light-mode-icon">
+                <img src="./resources/moon.svg" alt="Dark Mode" class="toggle-icon" id="dark-mode-icon" style="display: none;">
+            </div>
             <div class="hamburger">
                 <div></div>
                 <div></div>
                 <div></div>
             </div>
-            <nav>
-                <ul>
-                    <li><a href="#home" class="active">Home</a></li>
-                    <li><a href="#projects">Projects</a></li>
-                    <li><a href="#participation">Participation</a></li>
-                    <li><a href="#skills">Skills</a></li>
-                </ul>
-            </nav>
-            <div class="theme-toggle">
-                <img src="./resources/sun.svg" alt="Light Mode" class="toggle-icon" id="light-mode-icon">
-                <img src="./resources/moon.svg" alt="Dark Mode" class="toggle-icon" id="dark-mode-icon" style="display: none;">
-            </div>
         </div>
-    </header>
+    </div>
+</header>
 
     <main>
         <section id="home" class="hero">

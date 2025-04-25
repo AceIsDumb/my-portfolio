@@ -488,6 +488,30 @@ footer {
         grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
         gap: 1rem;
     }
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .theme-toggle {
+            margin-left: 0;
+            margin-right: 15px;
+            position: relative;
+            top: 0;
+            right: 0;
+        }
+        
+        .hamburger {
+            position: relative;
+            right: 0;
+        }
 }
 
 @media (max-width: 480px) {
