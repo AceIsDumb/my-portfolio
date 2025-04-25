@@ -8,12 +8,12 @@
 }
 
 .light-mode {
-    --bg: #C9E4E7;
-    --text: #000000;
-    --primary: #3b82f6;
-    --secondary: #10b981;
-    --accent: #f472b6;
-    --card-bg: #f9fafb;
+    --bg: #fefae0;
+    --text: #3b2f2f;
+    --primary: #d97706;
+    --secondary: #ca8a04;
+    --accent: #db2777;
+    --card-bg: #fff7ed;
 }
 
 * {
@@ -371,7 +371,7 @@ footer {
 
 
 .light-mode header {
-    background-color: #C9E4E7;
+    background-color: #fefae0;
 }
 
 

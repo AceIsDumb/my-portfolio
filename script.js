@@ -25,6 +25,14 @@ document.addEventListener('DOMContentLoaded', function() {
         applyTheme();
     });
     
+    const hamburger = document.querySelector('.hamburger');
+    const nav = document.querySelector('nav');
+    
+    hamburger.addEventListener('click', function() {
+        this.classList.toggle('active');
+        nav.classList.toggle('active');
+    });
+    
     const navLinks = document.querySelectorAll('nav a');
     
     navLinks.forEach(link => {
@@ -38,16 +46,17 @@ document.addEventListener('DOMContentLoaded', function() {
                 behavior: 'smooth' 
             });
             
+            // Remove active class from all links and add to current link
             navLinks.forEach(navLink => navLink.classList.remove('active'));
             this.classList.add('active');
             
-            const navContainer = document.querySelector('.nav-container');
-            if (navContainer.classList.contains('active')) {
-                navContainer.classList.remove('active');
-            }
+            // Close mobile menu when a link is clicked
+            hamburger.classList.remove('active');
+            nav.classList.remove('active');
         });
     });
     
+    // Fade-in animation
     const fadeElements = document.querySelectorAll('.fade-in');
     
     const observer = new IntersectionObserver((entries) => {
