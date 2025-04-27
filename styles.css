@@ -8,12 +8,12 @@
 }
 
 .light-mode {
-    --bg: #fefae0;
-    --text: #3b2f2f;
-    --primary: #d97706;
+    --bg: #eff1f5;
+    --text: #4c4f69;
+    --primary: #ea76cb;
     --secondary: #ca8a04;
-    --accent: #db2777;
-    --card-bg: #fff7ed;
+    --accent: #1e66f5;
+    --card-bg: #e6e9ef;
 }
 
 * {
@@ -409,7 +409,7 @@ footer {
 }
 
 .light-mode header {
-    background-color: rgba(201, 228, 231, 0.9);
+    background-color: #eff1f5;
     backdrop-filter: blur(10px);
 }
 
