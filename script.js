@@ -46,17 +46,34 @@ document.addEventListener('DOMContentLoaded', function() {
                 behavior: 'smooth' 
             });
             
-            // Remove active class from all links and add to current link
             navLinks.forEach(navLink => navLink.classList.remove('active'));
             this.classList.add('active');
             
-            // Close mobile menu when a link is clicked
             hamburger.classList.remove('active');
             nav.classList.remove('active');
         });
     });
     
-    // Fade-in animation
+    const ctaButton = document.querySelector('.cta-button');
+    if (ctaButton) {
+        ctaButton.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            const targetId = this.getAttribute('href');
+            const targetSection = document.querySelector(targetId);
+            
+            targetSection.scrollIntoView({ 
+                behavior: 'smooth' 
+            });
+            
+            navLinks.forEach(navLink => navLink.classList.remove('active'));
+            const correspondingNavLink = document.querySelector(`nav a[href="${targetId}"]`);
+            if (correspondingNavLink) {
+                correspondingNavLink.classList.add('active');
+            }
+        });
+    }
+    
     const fadeElements = document.querySelectorAll('.fade-in');
     
     const observer = new IntersectionObserver((entries) => {

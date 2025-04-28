@@ -514,6 +514,10 @@ footer {
         }
 }
 
+    .light-mode .header-buttons img {
+        filter: brightness(0);
+    }
+
 @media (max-width: 480px) {
     .project-card {
         margin-bottom: 1.5rem;
