@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     let isDarkMode = localStorage.getItem('theme') !== 'light';
     
-    function applyTheme() {
+    function applyTheme(animate = false) {
         if (isDarkMode) {
             document.body.classList.remove('light-mode');
             lightModeIcon.style.display = 'none';
@@ -15,14 +15,35 @@ document.addEventListener('DOMContentLoaded', function() {
             lightModeIcon.style.display = 'block';
             darkModeIcon.style.display = 'none';
         }
+        
+        if (animate) {
+            themeToggle.classList.add('animating');
+            setTimeout(() => {
+                themeToggle.classList.remove('animating');
+            }, 700);
+            
+            document.body.style.opacity = '0.92';
+            setTimeout(() => {
+                document.body.style.opacity = '1';
+            }, 300);
+            
+            const heroImage = document.querySelector('.hero-image');
+            if (heroImage) {
+                heroImage.classList.add('inverting');
+                setTimeout(() => {
+                    heroImage.classList.remove('inverting');
+                }, 1000);
+            }
+        }
     }
     
-    applyTheme();
+    applyTheme(false);
     
     themeToggle.addEventListener('click', () => {
         isDarkMode = !isDarkMode;
         localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
-        applyTheme();
+        
+        applyTheme(true);
     });
     
     const hamburger = document.querySelector('.hamburger');
