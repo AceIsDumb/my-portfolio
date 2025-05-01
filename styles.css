@@ -829,3 +829,18 @@ nav a.active::after {
 .theme-toggle:hover {
   transform: rotate(15deg) scale(1.1);
 }
+
+.certificate-button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+/* You can use this if you want a special style for this specific button */
+.certificate-button-container .cta-button {
+  background-color: var(--primary);
+}
+
+.certificate-button-container .cta-button:hover::before {
+  background-color: var(--accent);
+}

@@ -1,249 +1,316 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Chace Tan | Developer & Designer</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Space+Grotesk:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-  <header>
-    <div class="container nav-container">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Space+Grotesk:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header>
+      <div class="container nav-container">
         <div class="logo">CT</div>
         <nav>
-            <ul>
-                <li><a href="#home" class="active">Home</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#participation">Participation</a></li>
-                <li><a href="#skills">Skills</a></li>
-            </ul>
+          <ul>
+            <li><a href="#home" class="active">Home</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#participation">Participation</a></li>
+            <li><a href="#skills">Skills</a></li>
+          </ul>
         </nav>
         <div class="nav-right">
-            <div class="theme-toggle">
-                <img src="./resources/sun.svg" alt="Light Mode" class="toggle-icon" id="light-mode-icon" loading="lazy">
-                <img src="./resources/moon.svg" alt="Dark Mode" class="toggle-icon" id="dark-mode-icon" style="display: none;" loading="lazy">
-            </div>
-            <div class="hamburger">
-                <div></div>
-                <div></div>
-                <div></div>
-            </div>
+          <div class="theme-toggle">
+            <img
+              src="./resources/sun.svg"
+              alt="Light Mode"
+              class="toggle-icon"
+              id="light-mode-icon"
+              loading="lazy"
+            />
+            <img
+              src="./resources/moon.svg"
+              alt="Dark Mode"
+              class="toggle-icon"
+              id="dark-mode-icon"
+              style="display: none"
+              loading="lazy"
+            />
+          </div>
+          <div class="hamburger">
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
         </div>
-    </div>
-</header>
+      </div>
+    </header>
 
     <main>
-        <section id="home" class="hero">
-            <div class="container">
-                <div class="hero-wrapper">
-                    <div class="hero-content">
-                        <h1 class="fade-in">Chace Tan<br><span class="highlight">Developer & Designer</span></h1>
-                        <p class="fade-in">Hello 👋 I'm Chace, a secondary 4 student from the School of Science and Technology, and a fullstack developer and designer.</p>
-                        <a href="#projects" class="cta-button fade-in">View My Work</a>
-                    </div>
-                    <div class="hero-image fade-in">
-                        <img src="./resources/profile.png" alt="Chace Tan" loading="lazy">
-                    </div>
-                </div>
+      <section id="home" class="hero">
+        <div class="container">
+          <div class="hero-wrapper">
+            <div class="hero-content">
+              <h1 class="fade-in">
+                Chace Tan<br /><span class="highlight">Developer & Designer</span>
+              </h1>
+              <p class="fade-in">
+                Hello 👋 I'm Chace, a secondary 4 student from the School of Science and Technology,
+                and a fullstack developer and designer.
+              </p>
+              <a href="#projects" class="cta-button fade-in">View My Work</a>
             </div>
-        </section>
+            <div class="hero-image fade-in">
+              <img src="./resources/profile.png" alt="Chace Tan" loading="lazy" />
+            </div>
+          </div>
+        </div>
+      </section>
 
-        <section id="projects" class="section">
-            <div class="container">
-                <h2 class="section-title fade-in">Featured Projects</h2>
-                <div class="projects-grid">
-                    <div class="project-card fade-in">
-                        <img src="./resources/Open house.png" alt="SST Open House App" class="project-image" loading="lazy">
-                        <div class="project-content">
-                            <h3 class="project-title">SST Open House App</h3>
-                            <p class="project-description">App for guests during SST's Open House!</p>
-                            <a href="https://github.com/sst-inc/openhouseapp2024" class="project-link" target="_blank">View Project</a>
-                        </div>
-                    </div>
-                    <div class="project-card fade-in">
-                        <img src="./resources/Virtual tour.png" alt="SST Virtual Tour" class="project-image" loading="lazy">
-                        <div class="project-content">
-                            <h3 class="project-title">SST Virtual Tour</h3>
-                            <p class="project-description">A web-based virtual tour of SST!</p>
-                            <a href="https://github.com/tedydevmac/virtualtour" class="project-link" target="_blank">View Project</a>
-                        </div>
-                    </div>
-                    <div class="project-card fade-in">
-                        <img src="./resources/Sokudo.png" alt="Sokudo!" class="project-image" loading="lazy">
-                        <div class="project-content">
-                            <h3 class="project-title">Sokudo!</h3>
-                            <p class="project-description">A mental health chatbot built on Gemini 2.0!</p>
-                            <a href="https://github.com/AceIsDumb/sokudo" class="project-link" target="_blank">View Project</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="participation" class="section">
-            <div class="container">
-                <h2 class="section-title fade-in">Participation & Achievements</h2>
-                <div class="participation-list">
-                    <div class="participation-item fade-in">
-                        <div class="participation-year">2025</div>
-                        <div class="participation-event">Perse Coding Team Challenge 2025 <span class="highlight2">Distinction</span></div>
-                        <div class="participation-event">PicoCTF 2025</div>
-                        <div class="participation-event">UgraCTF 2025</div>
-                        <div class="participation-event">BuildingBloCS March Conference</div>
-                        <div class="participation-event">National Software Competition 2025 <span class="highlight2">First Place</span></div>
-                    </div>
-                    <div class="participation-item fade-in">
-                        <div class="participation-year">2024</div>
-                        <div class="participation-event">Perse Coding Team Challenge 2024</div>
-                        <div class="participation-event">Hackomania 2024</div>
-                        <div class="participation-event">Building with Flutter workshop</div>
-                        <div class="participation-event">BlahajCTF 2024</div>
-                        <div class="participation-event">AWS Deepracer workshop @ Republic Polytechnic</div>
-                    </div>
-                    <div class="participation-item fade-in">
-                        <div class="participation-year">2023</div>
-                        <div class="participation-event">Scouts Leadership Camp</div>
-                        <div class="participation-event">Singapore Amazing Flying Machine Competition</div>
-                        <div class="participation-event">Drone Odyssey Challenge</div>
-                    </div>
-                    <div class="participation-item fade-in">
-                        <div class="participation-year">2022</div>
-                        <div class="participation-event">SST Inc. 2022-present</div>
-                        <div class="participation-event">Spark AR Bootcamp</div>
-                        <div class="participation-event">SenseTime AI Bootcamp</div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <section id="skills" class="section">
-            <div class="container">
-              <h2 class="section-title fade-in">Skills</h2>
-              <div class="skills-grid fade-in">
-                <div class="skill-item">
-                  <div class="skill-inner">
-                    <i class="devicon-html5-plain colored"></i>
-                    <span>HTML</span>
-                  </div>
-                </div>
-                <div class="skill-item">
-                  <div class="skill-inner">
-                    <i class="devicon-css3-plain colored"></i>
-                    <span>CSS</span>
-                  </div>
-                </div>
-                <div class="skill-item">
-                  <div class="skill-inner">
-                    <i class="devicon-javascript-plain colored"></i>
-                    <span>JavaScript</span>
-                  </div>
-                </div>
-                <div class="skill-item">
-                  <div class="skill-inner">
-                    <i class="devicon-python-plain colored"></i>
-                    <span>Python</span>
-                  </div>
-                </div>
-                <div class="skill-item">
-                    <div class="skill-inner">
-                    <i class="devicon-swift-plain colored"></i>
-                    <span>Swift</span>
-                    </div>
-                </div>
-                <div class="skill-item">
-                    <div class="skill-inner">
-                    <i class="devicon-java-plain colored"></i>
-                    <span>Java</span>
-                    </div>
-                </div>
-                <div class="skill-item">
-                  <div class="skill-inner">
-                    <i class="devicon-django-plain"></i>
-                    <span>Django</span>
-                  </div>
-                </div>
-                <div class="skill-item">
-                  <div class="skill-inner">
-                    <i class="devicon-react-original colored"></i>
-                    <span>React</span>
-                  </div>
-                </div>
-                <div class="skill-item">
-                  <div class="skill-inner">
-                    <i class="devicon-react-original colored"></i>
-                    <span>React Native</span>
-                  </div>
-                </div>
-                <div class="skill-item">
-                  <div class="skill-inner">
-                    <i class="devicon-nodejs-plain colored"></i>
-                    <span>Node.js</span>
-                  </div>
-                </div>
-                <div class="skill-item">
-                  <div class="skill-inner">
-                    <i class="devicon-nextjs-plain"></i>
-                    <span>Next.js</span>
-                  </div>
-                </div>
-                <div class="skill-item">
-                    <div class="skill-inner">
-                        <i class="devicon-flutter-plain"></i>
-                      <span>Flutter</span>
-                    </div>
-                  </div>
-                  <div class="skill-item">
-                    <div class="skill-inner">
-                      <i class="devicon-tailwindcss-plain colored"></i>
-                      <span>TailwindCSS</span>
-                    </div>
-                  </div>
-                <div class="skill-item">
-                  <div class="skill-inner">
-                    <i class="devicon-flask-original"></i>
-                    <span>Flask</span>
-                  </div>
-                </div>
-                <div class="skill-item">
-                    <div class="skill-inner">
-                    <i class="devicon-figma-plain colored"></i>
-                    <span>Figma</span>
-                    </div>
-                </div>
-                <div class="skill-item">
-                    <div class="skill-inner">
-                        <i class="devicon-git-plain colored"></i>
-                      <span>Git</span>
-                    </div>
-                  </div>
+      <section id="projects" class="section">
+        <div class="container">
+          <h2 class="section-title fade-in">Featured Projects</h2>
+          <div class="projects-grid">
+            <div class="project-card fade-in">
+              <img
+                src="./resources/Open house.png"
+                alt="SST Open House App"
+                class="project-image"
+                loading="lazy"
+              />
+              <div class="project-content">
+                <h3 class="project-title">SST Open House App</h3>
+                <p class="project-description">App for guests during SST's Open House!</p>
+                <a
+                  href="https://github.com/sst-inc/openhouseapp2024"
+                  class="project-link"
+                  target="_blank"
+                  >View Project</a
+                >
               </div>
             </div>
-          </section>
-          
-        <section id="socials" class="section">
-            <div class="container">
-                <h2 class="section-title fade-in">Find me on</h2>
-                <div class="header-buttons fade-in">
-                    <a href="https://github.com/AceIsDumb" target="_blank">
-                        <img src="./resources/github-logo.png" alt="GitHub Logo">
-                    </a>
-                    <a href="https://www.linkedin.com/in/chace-tan-ba72162ba/" target="_blank">
-                        <img src="./resources/linkedin-logo.png" alt="LinkedIn Logo">
-                    </a>
-                </div>
+            <div class="project-card fade-in">
+              <img
+                src="./resources/Virtual tour.png"
+                alt="SST Virtual Tour"
+                class="project-image"
+                loading="lazy"
+              />
+              <div class="project-content">
+                <h3 class="project-title">SST Virtual Tour</h3>
+                <p class="project-description">A web-based virtual tour of SST!</p>
+                <a
+                  href="https://github.com/tedydevmac/virtualtour"
+                  class="project-link"
+                  target="_blank"
+                  >View Project</a
+                >
+              </div>
             </div>
-        </section>
+            <div class="project-card fade-in">
+              <img
+                src="./resources/Sokudo.png"
+                alt="Sokudo!"
+                class="project-image"
+                loading="lazy"
+              />
+              <div class="project-content">
+                <h3 class="project-title">Sokudo!</h3>
+                <p class="project-description">A mental health chatbot built on Gemini 2.0!</p>
+                <a href="https://github.com/AceIsDumb/sokudo" class="project-link" target="_blank"
+                  >View Project</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="participation" class="section">
+        <div class="container">
+          <h2 class="section-title fade-in">Participation & Achievements</h2>
+          <div class="participation-list">
+            <div class="participation-item fade-in">
+              <div class="participation-year">2025</div>
+              <div class="participation-event">
+                Perse Coding Team Challenge 2025 <span class="highlight2">Distinction</span>
+              </div>
+              <div class="participation-event">PicoCTF 2025</div>
+              <div class="participation-event">UgraCTF 2025</div>
+              <div class="participation-event">BuildingBloCS March Conference</div>
+              <div class="participation-event">
+                National Software Competition 2025 <span class="highlight2">First Place</span>
+              </div>
+            </div>
+            <div class="participation-item fade-in">
+              <div class="participation-year">2024</div>
+              <div class="participation-event">Perse Coding Team Challenge 2024</div>
+              <div class="participation-event">Hackomania 2024</div>
+              <div class="participation-event">Building with Flutter workshop</div>
+              <div class="participation-event">BlahajCTF 2024</div>
+              <div class="participation-event">AWS Deepracer workshop @ Republic Polytechnic</div>
+              <div class="participation-event">
+                Astronaut Al Worden Endevour Space Camp Challenge
+              </div>
+            </div>
+            <div class="participation-item fade-in">
+              <div class="participation-year">2023</div>
+              <div class="participation-event">Scouts Leadership Camp</div>
+              <div class="participation-event">Singapore Amazing Flying Machine Competition</div>
+              <div class="participation-event">Drone Odyssey Challenge</div>
+            </div>
+            <div class="participation-item fade-in">
+              <div class="participation-year">2022</div>
+              <div class="participation-event">SST Inc. 2022-present</div>
+              <div class="participation-event">Spark AR Bootcamp</div>
+              <div class="participation-event">SenseTime AI Bootcamp</div>
+            </div>
+          </div>
+        </div>
+        <div class="certificate-button-container fade-in">
+          <a
+            href="https://drive.google.com/drive/u/0/folders/16EfI7YTpR1nn0ydxEui-Cmm7Sq1ZA-J0"
+            class="cta-button"
+            target="_blank"
+          >
+            View Certificates
+          </a>
+        </div>
+      </section>
+      <section id="skills" class="section">
+        <div class="container">
+          <h2 class="section-title fade-in">Skills</h2>
+          <div class="skills-grid fade-in">
+            <div class="skill-item">
+              <div class="skill-inner">
+                <i class="devicon-html5-plain colored"></i>
+                <span>HTML</span>
+              </div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-inner">
+                <i class="devicon-css3-plain colored"></i>
+                <span>CSS</span>
+              </div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-inner">
+                <i class="devicon-javascript-plain colored"></i>
+                <span>JavaScript</span>
+              </div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-inner">
+                <i class="devicon-python-plain colored"></i>
+                <span>Python</span>
+              </div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-inner">
+                <i class="devicon-swift-plain colored"></i>
+                <span>Swift</span>
+              </div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-inner">
+                <i class="devicon-java-plain colored"></i>
+                <span>Java</span>
+              </div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-inner">
+                <i class="devicon-django-plain"></i>
+                <span>Django</span>
+              </div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-inner">
+                <i class="devicon-react-original colored"></i>
+                <span>React</span>
+              </div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-inner">
+                <i class="devicon-react-original colored"></i>
+                <span>React Native</span>
+              </div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-inner">
+                <i class="devicon-nodejs-plain colored"></i>
+                <span>Node.js</span>
+              </div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-inner">
+                <i class="devicon-nextjs-plain"></i>
+                <span>Next.js</span>
+              </div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-inner">
+                <i class="devicon-flutter-plain"></i>
+                <span>Flutter</span>
+              </div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-inner">
+                <i class="devicon-tailwindcss-plain colored"></i>
+                <span>TailwindCSS</span>
+              </div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-inner">
+                <i class="devicon-flask-original"></i>
+                <span>Flask</span>
+              </div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-inner">
+                <i class="devicon-figma-plain colored"></i>
+                <span>Figma</span>
+              </div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-inner">
+                <i class="devicon-git-plain colored"></i>
+                <span>Git</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="socials" class="section">
+        <div class="container">
+          <h2 class="section-title fade-in">Find me on</h2>
+          <div class="header-buttons fade-in">
+            <a href="https://github.com/AceIsDumb" target="_blank">
+              <img src="./resources/github-logo.png" alt="GitHub Logo" />
+            </a>
+            <a href="https://www.linkedin.com/in/chace-tan-ba72162ba/" target="_blank">
+              <img src="./resources/linkedin-logo.png" alt="LinkedIn Logo" />
+            </a>
+          </div>
+        </div>
+      </section>
     </main>
 
     <footer>
-        <div class="container">
-            <p>&copy; Made by Chace :3</p>
-        </div>
+      <div class="container">
+        <p>&copy; Made by Chace :3</p>
+      </div>
     </footer>
 
     <script src="script.js"></script>
-</body>
+  </body>
 </html>
