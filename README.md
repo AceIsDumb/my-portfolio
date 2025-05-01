@@ -1,6 +1,9 @@
 ## my-portfolio
-Simple writeup about my experiences, participation and leadership
+Simple HTML/CSS/JS static site for my portfolio
 
-constantly updated with my participations
+Includes Projects, participations, skills and achievements
 
-working on google drive with my certificates
+### Improvements to make
+- upgraded skill section
+- make project links go to app/playstore
+- find the rest of ur certs pls
