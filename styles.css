@@ -139,7 +139,6 @@ nav a.active {
 .hero {
   display: flex;
   align-items: center;
-  justify-content: center;
   min-height: calc(100vh - 70px);
   padding: 0;
   margin-top: 70px;
@@ -561,13 +560,13 @@ footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: relative;
   }
 
   .nav-right {
     display: flex;
     align-items: center;
-    gap: 1rem;
-  }
+}
 
   .theme-toggle {
     margin-left: 0;
