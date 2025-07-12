@@ -835,11 +835,12 @@ nav a.active::after {
 
 .certificate-button-container {
   display: flex;
+  gap: 2rem;
   justify-content: center;
   margin-top: 2rem;
 }
 
-/* You can use this if you want a special style for this specific button */
+
 .certificate-button-container .cta-button {
   background-color: var(--primary);
 }
