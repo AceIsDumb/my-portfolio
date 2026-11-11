@@ -61,6 +61,10 @@
   /* hotbar + prompt */
   #hotbar{position:fixed;left:50%;bottom:max(14px,env(safe-area-inset-bottom));transform:translateX(-50%);z-index:6;
     display:flex;gap:0;padding:4px;background:rgba(20,20,20,.6);border:3px solid #1b1b1b}
+  #mobileControls{position:fixed;left:50%;bottom:calc(84px + env(safe-area-inset-bottom));transform:translateX(-50%);z-index:6;
+    display:none;gap:8px;padding:4px;background:rgba(20,20,20,.68);border:3px solid #1b1b1b}
+  #mobileControls .mc{margin:0;padding:10px 12px;font-size:12px;min-width:74px}
+  #mobileControls .mc[disabled]{opacity:.6;cursor:not-allowed}
   .slot{position:relative;width:56px;height:56px;margin:0;padding:0;background:rgba(110,110,110,.45);border:3px solid #3a3a3a;
     color:#fff;font-size:26px;cursor:pointer;display:flex;align-items:center;justify-content:center}
   .slot:hover{background:rgba(160,160,200,.5)}
@@ -99,19 +103,28 @@
     box-shadow:inset 2px 2px 0 #5c5c5c, inset -2px -2px 0 #222}
 
   #fallback{display:none}
-  body.nogl #scene,body.nogl #spacer,body.nogl #title,body.nogl #hotbar,body.nogl #prompt,body.nogl #panel,body.nogl #f3,body.nogl #brand,body.nogl #cross{display:none}
+  body.nogl #scene,body.nogl #spacer,body.nogl #title,body.nogl #hotbar,body.nogl #mobileControls,body.nogl #prompt,body.nogl #panel,body.nogl #f3,body.nogl #brand,body.nogl #cross{display:none}
   body.nogl #fallback{display:block;max-width:720px;margin:0 auto;padding:40px 20px 80px}
   body.nogl #fallback section{margin-bottom:48px}
 
   @media (max-width:760px){
     body{font-size:16px}
     #f3{display:none}
+    #brand{top:10px;right:10px;padding:8px 10px}
     .slot{width:46px;height:46px;font-size:22px}
-    #panel{top:auto;left:10px;right:10px;bottom:90px;width:auto;height:52vh}
-    #prompt{bottom:84px}
+    #hotbar{bottom:max(8px,env(safe-area-inset-bottom))}
+    #mobileControls{gap:6px;bottom:calc(62px + env(safe-area-inset-bottom))}
+    #mobileControls .mc{min-width:64px;padding:9px 10px;font-size:11px}
+    #panel{
+      top:max(8px,env(safe-area-inset-top));left:8px;right:8px;
+      bottom:calc(118px + env(safe-area-inset-bottom));width:auto;
+      padding:18px 16px 20px
+    }
+    #close{position:sticky;top:0;z-index:1}
+    #prompt{bottom:calc(112px + env(safe-area-inset-bottom));max-width:calc(100vw - 20px);text-align:center}
     #splash{right:-2%}
   }
-  @media (pointer:coarse){ #cross{display:none} }
+  @media (pointer:coarse){ #cross{display:none} #mobileControls{display:flex} }
   @media (prefers-reduced-motion:reduce){ #splash{animation:none} #panel{transition:opacity .2s} }
 </style>
 </head>
@@ -135,6 +148,12 @@
 <div id="f3" aria-hidden="true"></div>
 <div id="cross" aria-hidden="true"></div>
 <button class="mc" id="prompt"></button>
+<div id="mobileControls" role="toolbar" aria-label="Mobile tunnel controls">
+  <button class="mc" id="mPrev" aria-label="Go to previous portal">◀ Prev</button>
+  <button class="mc" id="mUse" aria-label="Enter nearest portal">Enter</button>
+  <button class="mc" id="mNext" aria-label="Go to next portal">Next ▶</button>
+  <button class="mc" id="mClose" aria-label="Close panel">Close</button>
+</div>
 <div id="hotbar" role="toolbar" aria-label="Jump to a section"></div>
 
 <aside id="panel" aria-live="polite">
@@ -259,12 +278,13 @@
   var $ = function (id) { return document.getElementById(id); };
   var canvas = $('scene'), panel = $('panel'), panelBody = $('panelBody'),
       prompt = $('prompt'), hotbar = $('hotbar'), titleEl = $('title'), spacer = $('spacer'),
-      f3 = $('f3'), cross = $('cross');
+      f3 = $('f3'), cross = $('cross'),
+      mPrev = $('mPrev'), mUse = $('mUse'), mNext = $('mNext'), mClose = $('mClose');
 
   var coarse = !!(window.matchMedia && window.matchMedia('(pointer: coarse)').matches);
   var usingTouch = coarse;
   $('tip').textContent = coarse
-    ? 'Scroll to walk · drag sideways to look · tap a portal to enter\n please excuse any bugs as i push to prod for testing :3'
+    ? 'Scroll to walk · drag sideways to look · tap a portal to enter\n use mobile controls for easier prev/next + enter'
     : 'Scroll to walk · move your mouse to look · right-click a portal to enter\n please excuse any bugs as i push to prod for testing :3';
 
   var SPLASHES = ['Scroll to walk!', 'Year 1 @ SP!', 'Also try Python!', 'Made by Chace :3', 'Hackathon approved!',
@@ -687,6 +707,18 @@
   function scrollToDoor(i, instant) {
     window.scrollTo({ top: zToScroll(DOOR_Z[i] + STOP_OFFSET), behavior: (reduceMotion || instant) ? 'auto' : 'smooth' });
   }
+  function nearestDoorIndex() {
+    var nearest = 0;
+    var nearestD = 1e9;
+    for (var i = 0; i < SECTIONS.length; i++) {
+      var dd = Math.abs(DOOR_Z[i] - camZ);
+      if (dd < nearestD) { nearestD = dd; nearest = i; }
+    }
+    return nearest;
+  }
+  function activeMobileTarget() {
+    return hoverId || (nearIdx >= 0 ? SECTIONS[nearIdx].id : (camZ < END_Z + 5 ? 'end' : null));
+  }
   function sizeSpacer() { spacer.style.height = Math.round(window.innerHeight * 12) + 'px'; }
   sizeSpacer();
 
@@ -699,6 +731,7 @@
     '<li><b>1&ndash;' + SECTIONS.length + '</b> &mdash; jump to a portal</li>' +
     '<li><b>Esc</b> &mdash; back to the start menu</li>' +
     '<li><b>Touch</b> &mdash; drag sideways to look, tap a portal to enter</li>' +
+    '<li><b>Mobile controls</b> &mdash; Prev/Next to move between portals and Enter to open</li>' +
     '</ul>' +
     '<div class="group">Built with</div>' +
     '<p>html + css + threejs! Font: Monocraft (SIL Open Font License).</p>' +
@@ -750,6 +783,22 @@
   }
   $('brand').addEventListener('click', function () {
     closePanel(); window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
+  });
+  mPrev.addEventListener('click', function () {
+    var idx = nearestDoorIndex();
+    scrollToDoor(Math.max(0, idx - 1));
+  });
+  mNext.addEventListener('click', function () {
+    var idx = nearestDoorIndex();
+    scrollToDoor(Math.min(SECTIONS.length - 1, idx + 1));
+  });
+  mUse.addEventListener('click', function () {
+    var target = activeMobileTarget();
+    if (target) interact(target);
+  });
+  mClose.addEventListener('click', function () {
+    if (panel.classList.contains('open')) closePanel();
+    else backToStart();
   });
   var promptTarget = null;
   prompt.addEventListener('click', function () { if (promptTarget) interact(promptTarget); });
@@ -936,6 +985,17 @@
       promptTarget = null;
       prompt.classList.remove('show');
     }
+    if (mUse) {
+      var useTarget = activeMobileTarget();
+      if (useTarget) {
+        mUse.disabled = false;
+        mUse.textContent = useTarget === 'end' ? 'Enter void' : 'Enter ' + cap(BY_ID[useTarget].label);
+      } else {
+        mUse.disabled = true;
+        mUse.textContent = 'Enter';
+      }
+    }
+    if (mClose) mClose.textContent = panel.classList.contains('open') ? 'Close' : 'Top';
     if (openId && Math.abs(camZ - (DOOR_Z[BY_ID[openId].index] + STOP_OFFSET)) > 16) closePanel();
 
     f3.innerHTML =
