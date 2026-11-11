@@ -124,7 +124,11 @@
     #prompt{bottom:calc(112px + env(safe-area-inset-bottom));max-width:calc(100vw - 20px);text-align:center}
     #splash{right:-2%}
   }
-  @media (pointer:coarse){ #cross{display:none} #mobileControls{display:flex} }
+  @media (pointer:coarse){
+    #cross{display:none}
+    #prompt{display:none}
+    #mobileControls{display:flex}
+  }
   @media (prefers-reduced-motion:reduce){ #splash{animation:none} #panel{transition:opacity .2s} }
 </style>
 </head>
