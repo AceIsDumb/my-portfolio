@@ -1,99 +1,91 @@
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', () => {
   const themeToggle = document.querySelector('.theme-toggle');
   const lightModeIcon = document.getElementById('light-mode-icon');
   const darkModeIcon = document.getElementById('dark-mode-icon');
+  const hamburger = document.querySelector('.hamburger');
+  const nav = document.querySelector('nav');
+  const navLinks = document.querySelectorAll('nav a');
 
   let isDarkMode = localStorage.getItem('theme') !== 'light';
 
   function applyTheme(animate = false) {
-    if (isDarkMode) {
-      document.body.classList.remove('light-mode');
-      lightModeIcon.style.display = 'none';
-      darkModeIcon.style.display = 'block';
-    } else {
-      document.body.classList.add('light-mode');
-      lightModeIcon.style.display = 'block';
-      darkModeIcon.style.display = 'none';
-    }
+    document.body.classList.toggle('light-mode', !isDarkMode);
 
-    if (animate) {
-      themeToggle.classList.add('animating');
-      setTimeout(() => {
-        themeToggle.classList.remove('animating');
-      }, 700);
+    if (lightModeIcon) lightModeIcon.hidden = !isDarkMode;
+    if (darkModeIcon) darkModeIcon.hidden = isDarkMode;
 
-      document.body.style.opacity = '0.92';
-      setTimeout(() => {
-        document.body.style.opacity = '1';
-      }, 300);
+    if (!animate || !themeToggle) return;
 
-      const heroImage = document.querySelector('.hero-image');
-      if (heroImage) {
-        heroImage.classList.add('inverting');
-        setTimeout(() => {
-          heroImage.classList.remove('inverting');
-        }, 1000);
-      }
+    themeToggle.classList.add('animating');
+    setTimeout(() => themeToggle.classList.remove('animating'), 700);
+
+    const heroImage = document.querySelector('.hero-image');
+    if (heroImage) {
+      heroImage.classList.add('inverting');
+      setTimeout(() => heroImage.classList.remove('inverting'), 1000);
     }
   }
 
-  applyTheme(false);
+  applyTheme();
 
-  themeToggle.addEventListener('click', () => {
+  themeToggle?.addEventListener('click', () => {
     isDarkMode = !isDarkMode;
     localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
-
     applyTheme(true);
   });
 
-  const hamburger = document.querySelector('.hamburger');
-  const nav = document.querySelector('nav');
+  function closeMobileNav() {
+    hamburger?.classList.remove('active');
+    nav?.classList.remove('active');
+  }
 
-  hamburger.addEventListener('click', function () {
-    this.classList.toggle('active');
-    nav.classList.toggle('active');
+  hamburger?.addEventListener('click', () => {
+    hamburger.classList.toggle('active');
+    nav?.classList.toggle('active');
   });
 
-  const navLinks = document.querySelectorAll('nav a');
+  function scrollToTarget(targetId) {
+    const target = document.querySelector(targetId);
 
-  navLinks.forEach((link) => {
-    link.addEventListener('click', function (e) {
-      e.preventDefault();
+    if (target) {
+      const headerHeight = document.querySelector('header')?.offsetHeight ?? 0;
+      const targetTop = target.getBoundingClientRect().top + window.scrollY - headerHeight;
 
-      const targetId = this.getAttribute('href');
-      const targetSection = document.querySelector(targetId);
-
-      targetSection.scrollIntoView({
+      window.scrollTo({
+        top: targetTop,
         behavior: 'smooth',
       });
+    }
+  }
+
+  navLinks.forEach((link) => {
+    link.addEventListener('click', (event) => {
+      const targetId = link.getAttribute('href');
+
+      if (!targetId?.startsWith('#')) return;
+
+      event.preventDefault();
+      scrollToTarget(targetId);
 
       navLinks.forEach((navLink) => navLink.classList.remove('active'));
-      this.classList.add('active');
-
-      hamburger.classList.remove('active');
-      nav.classList.remove('active');
+      link.classList.add('active');
+      closeMobileNav();
     });
   });
 
   const ctaButton = document.querySelector('.cta-button');
-  if (ctaButton) {
-    ctaButton.addEventListener('click', function (e) {
-      e.preventDefault();
 
-      const targetId = this.getAttribute('href');
-      const targetSection = document.querySelector(targetId);
+  ctaButton?.addEventListener('click', (event) => {
+    const targetId = ctaButton.getAttribute('href');
 
-      targetSection.scrollIntoView({
-        behavior: 'smooth',
-      });
+    if (!targetId?.startsWith('#')) return;
 
-      navLinks.forEach((navLink) => navLink.classList.remove('active'));
-      const correspondingNavLink = document.querySelector(`nav a[href="${targetId}"]`);
-      if (correspondingNavLink) {
-        correspondingNavLink.classList.add('active');
-      }
-    });
-  }
+    event.preventDefault();
+    scrollToTarget(targetId);
+
+    navLinks.forEach((link) => link.classList.remove('active'));
+    document.querySelector(`nav a[href="${targetId}"]`)?.classList.add('active');
+  });
 
   const fadeElements = document.querySelectorAll('.fade-in');
 
@@ -102,32 +94,33 @@ document.addEventListener('DOMContentLoaded', function () {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           entry.target.classList.add('appear');
+          observer.unobserve(entry.target);
         }
       });
     },
     { threshold: 0.1 }
   );
 
-  fadeElements.forEach((element) => {
-    observer.observe(element);
-  });
+  fadeElements.forEach((element) => observer.observe(element));
 
-  window.addEventListener('scroll', function () {
-    let scrollPosition = window.scrollY;
+  window.addEventListener(
+    'scroll',
+    () => {
+      const scrollPosition = window.scrollY + 120;
 
-    document.querySelectorAll('section').forEach((section) => {
-      const sectionTop = section.offsetTop - 100;
-      const sectionHeight = section.offsetHeight;
-      const sectionId = section.getAttribute('id');
+      document.querySelectorAll('section[id]').forEach((section) => {
+        const isActive =
+          scrollPosition >= section.offsetTop &&
+          scrollPosition < section.offsetTop + section.offsetHeight;
 
-      if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
-        navLinks.forEach((link) => link.classList.remove('active'));
-
-        const activeLink = document.querySelector(`nav a[href="#${sectionId}"]`);
-        if (activeLink) {
-          activeLink.classList.add('active');
+        if (isActive) {
+          navLinks.forEach((link) => link.classList.remove('active'));
+          document
+            .querySelector(`nav a[href="#${section.id}"]`)
+            ?.classList.add('active');
         }
-      }
-    });
-  });
+      });
+    },
+    { passive: true }
+  );
 });
