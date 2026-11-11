@@ -22,6 +22,7 @@
   body{margin:0;color:var(--fg);font-family:var(--body);font-size:18px;background:#070403}
   #scene{position:fixed;inset:0;width:100%;height:100%;display:block;z-index:0;touch-action:pan-y}
   #scene.pointer{cursor:pointer}
+  #scene.locked{cursor:none}
   #spacer{width:1px}
 
   /* Minecraft-style button */
@@ -81,7 +82,8 @@
   #panel{position:fixed;z-index:7;top:64px;right:20px;bottom:96px;width:min(480px,calc(100vw - 40px));
     background:#232323;border:4px solid #000;box-shadow:inset 4px 4px 0 #5a5a5a, inset -4px -4px 0 #111;
     padding:24px 24px 28px;overflow-y:auto;color:#e6e6e6;line-height:1.4;
-    transform:translateX(calc(100% + 40px));opacity:0;pointer-events:none;transition:transform .45s steps(8),opacity .25s}
+    transform:translate3d(calc(100% + 40px),0,0);opacity:0;pointer-events:none;
+    will-change:transform,opacity;transition:transform .45s cubic-bezier(.22,1,.36,1),opacity .3s ease}
   #panel.open{transform:none;opacity:1;pointer-events:auto}
   #close{float:right;font-size:13px;padding:9px 11px}
   .eyebrow{font-family:var(--px);font-size:12px;letter-spacing:.06em;color:var(--green);margin:4px 0 12px}
@@ -745,6 +747,7 @@
 
   var openId = null, aboutOpen = false;
   function openAbout() {
+    releasePointerLock();
     openId = null; aboutOpen = true;
     panelBody.innerHTML = ABOUT_HTML;
     panel.scrollTop = 0;
@@ -752,6 +755,7 @@
   }
   function openSection(id, push) {
     if (!BY_ID[id]) return;
+    releasePointerLock();
     openId = id; aboutOpen = false;
     panelBody.innerHTML = BY_ID[id].html;
     panel.scrollTop = 0;
@@ -779,9 +783,10 @@
     try { history.replaceState(null, '', location.pathname + location.search); } catch (e) {}
   }
   $('close').addEventListener('click', closePanel);
-  $('start').addEventListener('click', function () { scrollToDoor(0); });
+  $('start').addEventListener('click', function () { scrollToDoor(0); lockPointer(); });
   $('aboutBtn').addEventListener('click', openAbout);
   function backToStart() {
+    if (document.pointerLockElement === canvas && document.exitPointerLock) document.exitPointerLock();
     closePanel();
     window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
   }
@@ -824,11 +829,29 @@
   var yawT = 0, pitchT = 0, yaw = 0, pitch = 0;
   var hoverId = null, pointerHit = null;
   var touchDown = false, lastX = 0;
+  var pointerLocked = false;
 
   function dead(v) {
     var a = Math.max(0, Math.abs(v) - 0.1) / 0.9;
     return (v < 0 ? -1 : 1) * Math.pow(a, 1.2);
   }
+  function lockPointer() {
+    if (coarse || usingTouch || onStart || panel.classList.contains('open') || pointerLocked || !canvas.requestPointerLock) return;
+    try { canvas.requestPointerLock(); } catch (e) {}
+  }
+  function releasePointerLock() {
+    if (document.pointerLockElement === canvas && document.exitPointerLock) document.exitPointerLock();
+  }
+  document.addEventListener('pointerlockchange', function () {
+    pointerLocked = document.pointerLockElement === canvas;
+    canvas.classList.toggle('locked', pointerLocked);
+  });
+  document.addEventListener('mousemove', function (e) {
+    if (!pointerLocked) return;
+    yawT = Math.max(-1.5, Math.min(1.5, yawT - (e.movementX || 0) * 0.003));
+    pitchT = Math.max(-0.55, Math.min(0.55, pitchT - (e.movementY || 0) * 0.003));
+  });
+  window.addEventListener('wheel', function () { lockPointer(); }, { passive: true });
   function pickAt(cx, cy, maxDist) {
     ndc.x = (cx / window.innerWidth) * 2 - 1;
     ndc.y = -(cy / window.innerHeight) * 2 + 1;
@@ -844,6 +867,7 @@
       canvas.classList.remove('pointer');
       return;
     }
+    if (pointerLocked) return;
     if (e.pointerType === 'touch') {
       usingTouch = true;
       if (touchDown) yawT = Math.max(-1.5, Math.min(1.5, yawT + (e.clientX - lastX) * 0.006));
@@ -858,6 +882,7 @@
   });
   canvas.addEventListener('pointerdown', function (e) {
     if (e.pointerType === 'touch') { usingTouch = true; touchDown = true; lastX = e.clientX; return; }
+    lockPointer();
     if (e.button === 2 && hoverId) interact(hoverId);          // right-click = "use"
   });
   function endTouch() { touchDown = false; }
@@ -914,6 +939,7 @@
     // scroll -> position down the tunnel
     var sy = window.pageYOffset || document.documentElement.scrollTop || 0;
     onStart = sy <= window.innerHeight * 0.32;
+    if (!onStart) lockPointer();
     if (onStart) { yawT = 0; pitchT = 0; }   // recentre the view on the start screen
     var p = Math.max(0, Math.min(1, sy / maxScroll()));
     var targetZ = START_Z + (END_Z - START_Z) * p;
